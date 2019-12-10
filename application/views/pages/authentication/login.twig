@@ -1,0 +1,47 @@
+{#
+ # Sharif Judge
+ # file: login.twig
+ # author: Mohammad Javad Naderi <mjnaderi@gmail.com>
+ #}
+{% set title = 'Вход' %}
+{% include 'templates/simple_header.twig' %}
+
+{{ form_open() }}
+	<div class="box login">
+
+		<div class="judge_logo">
+			<a href="{{ site_url() }}"><img src="{{ base_url('assets/images/banner.png') }}"/></a>
+		</div>
+
+		<div class="login_form">
+			<div class="login1">
+				<p>
+					<label for="form_username">Логин</label><br/>
+					<input id="form_username" type="text" name="username" required="required" pattern="[0-9a-zA-Z]{3,20}" title="Поле Логин должно содержать от 3 до 20 символов, и содержать только символы в нижнем регистре и цифры" class="sharif_input" value="{{ set_value('username') }}" autofocus="autofocus"/>
+					{{ form_error('username', '<div class="shj_error">', '</div>') }}
+				</p>
+				<p>
+					<label for="form_password">Пароль</label><br/>
+					<input id="form_password" type="password" name="password" required="required" pattern=".{6,200}" title="Пароль должен содержать как минимум 6 символов" class="sharif_input"/>
+					{{ form_error('password', '<div class="shj_error">', '</div>') }}
+				</p>
+				{% if error %}
+					<div class="shj_error">Некорректный логин или пароль.</div>
+				{% endif %}
+			</div>
+			<div class="login2">
+				<p style="margin:0;">
+					{% if registration_enabled %}
+					<a href="{{ site_url('register') }}">Регистрация</a> |
+					{% endif %}
+					<a href="{{ site_url('login/lost') }}">Сброс пароля</a>
+					<input type="submit" value="Войти" id="sharif_submit"/>
+				</p>
+			</div>
+            <p style="text-align:center">Разработано на основе Sharif Judge А.Кадыровым</p>
+		</div>
+
+	</div>
+</form>
+</body>
+</html>

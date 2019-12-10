@@ -1,0 +1,23 @@
+{#
+ # Sharif Judge
+ # file: scoreboard.twig
+ # author: Mohammad Javad Naderi <mjnaderi@gmail.com>
+ #}
+{% set selected = 'scoreboard' %}
+{% extends 'templates/base.twig' %}
+{% block icon %}fa-star{% endblock %}
+{% block title %}Мониторинг рейтинга{% endblock %}
+{% block head_title %}Мониторинг рейтинга{% endblock %}
+
+
+
+{% block main_content %}
+{% if user.selected_assignment.id == 0 %}
+<p>Вы не выбрали соревнование. <a href="/assignments">Выбрать</a></p>
+{% elseif not user.selected_assignment.scoreboard %}
+<p>Мониторинг отключен администратором.</p>
+{% else %}
+	<p hidden>Мониторинг рейтинга для <span dir="auto">{{ user.selected_assignment.name }}</span></p>
+	{{ scoreboard|raw }}
+{% endif %}
+{% endblock %} {# main_content #}
